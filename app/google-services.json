@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "651126288942",
+    "project_id": "finaljournal-ccb9a",
+    "storage_bucket": "finaljournal-ccb9a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:651126288942:android:b02a194ce0509fa57c25bf",
+        "android_client_info": {
+          "package_name": "com.example.journalapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCv1K-v8UsRlFkVf-SgCx-ChebDoOqfW7E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
