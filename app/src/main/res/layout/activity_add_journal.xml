@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddJournalActivity">
+
+    <!-- Aesthetic Background Layer -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_add_journal" />
+
+    <!-- Decorative top wave pattern -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:scaleType="fitXY"
+        android:src="@android:drawable/dialog_holo_light_frame"
+        android:alpha="0.1"
+        android:rotation="180"
+        app:tint="@android:color/white" />
+
+    <!-- Decorative bottom wave pattern -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_gravity="bottom"
+        android:scaleType="fitXY"
+        android:src="@android:drawable/dialog_holo_light_frame"
+        android:alpha="0.1"
+        app:tint="@android:color/white" />
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:elevation="0dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/transparent"
+            app:title="Create Journal Entry"
+            app:titleTextColor="@android:color/white" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        android:overScrollMode="never"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/image_card"
+                android:layout_width="match_parent"
+                android:layout_height="242dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white"
+                    android:alpha="0.08" />
+
+                <ImageView
+                    android:id="@+id/post_imageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="Journal image" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/postCameraButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@android:drawable/ic_menu_camera"
+                    app:tint="@android:color/white"
+                    app:backgroundTint="@android:color/holo_blue_dark"
+                    app:fabSize="normal"
+                    app:borderWidth="0dp"
+                    app:elevation="12dp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/post_date_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Today, February 28, 2025"
+                android:textSize="16sp"
+                android:textStyle="italic"
+                android:textColor="@android:color/white"
+                android:alpha="0.9"
+                android:background="@android:drawable/dialog_holo_light_frame"
+                android:backgroundTint="#33000000"
+                android:backgroundTintMode="src_in"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image_card" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/title_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusTopStart="12dp"
+                app:boxStrokeColor="@android:color/white"
+                app:boxStrokeWidth="1dp"
+                app:boxBackgroundColor="#33FFFFFF"
+                app:hintEnabled="true"
+                app:hintAnimationEnabled="true"
+                app:hintTextColor="@android:color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/post_date_textView">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/post_title_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Journal Title"
+                    android:textColorHint="@android:color/white"
+                    android:textColor="@android:color/white"
+                    android:inputType="textCapSentences"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/description_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="24dp"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusTopStart="12dp"
+                app:boxStrokeColor="@android:color/white"
+                app:boxStrokeWidth="1dp"
+                app:boxBackgroundColor="#33FFFFFF"
+                app:hintEnabled="true"
+                app:hintAnimationEnabled="true"
+                app:hintTextColor="@android:color/white"
+                app:layout_constraintBottom_toTopOf="@+id/post_progressBar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title_input_layout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/post_description_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="top|start"
+                    android:hint="Your thoughts, reflections, and experiences..."
+                    android:textColorHint="@android:color/white"
+                    android:textColor="@android:color/white"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:minLines="5" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ProgressBar
+                android:id="@+id/post_progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:indeterminate="true"
+                android:visibility="gone"
+                android:indeterminateTint="@android:color/white"
+                app:layout_constraintBottom_toTopOf="@+id/post_save_journal_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/post_save_journal_button"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="Save Journal Entry"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                app:cornerRadius="28dp"
+                app:backgroundTint="#80FFFFFF"
+                android:textColor="@android:color/white"
+                android:elevation="8dp"
+                android:stateListAnimator="@null"
+                app:strokeColor="@android:color/white"
+                app:strokeWidth="1dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
