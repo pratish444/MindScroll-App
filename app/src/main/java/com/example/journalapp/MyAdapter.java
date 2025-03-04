@@ -44,24 +44,24 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         public ImageView image, shareButton;
         public String userId,username;
 
-    public MyViewHolder(@NonNull View itemView){
-        super(itemView);
+        public MyViewHolder(@NonNull View itemView){
+            super(itemView);
 
-        title = itemView.findViewById(R.id.journal_title_list);
-        thoughts = itemView.findViewById(R.id.journal_thought_list);
-        dateAdded = itemView.findViewById(R.id.journal_timestamp_list);
+            title = itemView.findViewById(R.id.journal_title_list);
+            thoughts = itemView.findViewById(R.id.journal_thought_list);
+            dateAdded = itemView.findViewById(R.id.journal_timestamp_list);
 
-        image = itemView.findViewById(R.id.journal_image_list);
-        name = itemView.findViewById(R.id.journal_row_username);
+            image = itemView.findViewById(R.id.journal_image_list);
+            name = itemView.findViewById(R.id.journal_row_username);
 
-        shareButton = itemView.findViewById(R.id.journal_row_share_button);
+            shareButton = itemView.findViewById(R.id.journal_row_share_button);
 
-        shareButton.setOnClickListener(v -> {
+            shareButton.setOnClickListener(v -> {
 
-            // onClick()
-            // Sharing the Post....
-        });
+                // onClick()
+                // Sharing the Post....
+            });
 
-    }
+        }
     }
 }

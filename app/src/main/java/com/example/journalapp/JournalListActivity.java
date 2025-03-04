@@ -89,6 +89,44 @@ public class JournalListActivity extends AppCompatActivity {
         });
     }
 
+    // Consolidated method to fetch journals
+    private void fetchJournals() {
+        if (user != null) {
+            // Clear list before fetching to prevent duplicates
+            journalList.clear();
+
+            collectionReference
+                    .whereEqualTo("userId", user.getUid())
+                    .get()
+                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            if (!queryDocumentSnapshots.isEmpty()) {
+                                for (QueryDocumentSnapshot journal : queryDocumentSnapshots) {
+                                    Journal j = journal.toObject(Journal.class);
+                                    journalList.add(j);
+                                }
+
+                                // Notify Adapter
+                                myAdapter.notifyDataSetChanged();
+                            } else {
+                                Toast.makeText(JournalListActivity.this,
+                                        "No Journals Found. Add your first journal!",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(JournalListActivity.this,
+                                    "Failed to Load Journals: " + e.getMessage(),
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
+    }
+
     // Menu Options
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -127,46 +165,15 @@ public class JournalListActivity extends AppCompatActivity {
             return;
         }
 
-        // Clear List before fetching to prevent duplicates
-        journalList.clear();
-
-        // Fetch Data from Firestore
-        collectionReference
-                .whereEqualTo("userId", user.getUid())
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        if (!queryDocumentSnapshots.isEmpty()) {
-                            for (QueryDocumentSnapshot journal : queryDocumentSnapshots) {
-                                Journal j = journal.toObject(Journal.class);
-                                journalList.add(j);
-                            }
-
-                            // Notify Adapter
-                            myAdapter.notifyDataSetChanged();
-                        } else {
-                            Toast.makeText(JournalListActivity.this,
-                                    "No Journals Found. Add your first journal!",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(JournalListActivity.this,
-                                "Failed to Load Journals: " + e.getMessage(),
-                                Toast.LENGTH_SHORT).show();
-                    }
-                });
+        // Fetch journals
+        fetchJournals();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        // Refresh Journal List
-        journalList.clear();
-        myAdapter.notifyDataSetChanged();
+
+        // Fetch journals again to ensure latest data
+        fetchJournals();
     }
 }
