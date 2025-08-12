@@ -99,6 +99,12 @@ Project-level build.gradle (Root folder):
        }
      }
 
+ ## Clone the repository:
+
+
+
+     git clone https://github.com/pratish444/MindScroll-App.git
+
 
 
             
